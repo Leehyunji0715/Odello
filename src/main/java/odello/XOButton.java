@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class XOButton extends JButton implements ActionListener {
-	ImageIcon X,O;
+	ImageIcon X,O,Point;
 	byte value=0;
 	/*
 	 0:nothing
@@ -17,9 +17,16 @@ public class XOButton extends JButton implements ActionListener {
 	public XOButton() {
 		O = new ImageIcon(this.getClass().getResource("../Images/X.png"));
 		X = new ImageIcon(this.getClass().getResource("../Images/O.png"));
-		this.addActionListener(this);
+		Point = new ImageIcon(this.getClass().getResource("../Images/point.png"));
+		this.addActionListener(this);//button 누르면 발생하는 이벤트  
 	}
 	public void actionPerformed(ActionEvent e) {
+		
+		
+	}
+
+	/*
+	public void actionPerformed(ActionEvent e) {//Othello action 적기.... 
 		value++;
 		value%=3;
 		switch(value) {
@@ -34,5 +41,6 @@ public class XOButton extends JButton implements ActionListener {
 			break;
 		}
 	}
+	*/
 
 }

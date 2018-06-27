@@ -7,11 +7,12 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.ImageIcon;
 
 public class PlayerSetting extends Panel {
-	public ImageIcon p1, p1_shadow;	// p1 의 말 과 쉐도우
-	public ImageIcon p2, p2_shadow;	// p2 의 말 과 쉐도우
+	public static ImageIcon p1;	// p1 의 말 과 쉐도우
+	public ImageIcon p1_shadow;
+	public static ImageIcon p2;	// p2 의 말 과 쉐도우
+	public ImageIcon p2_shadow;
 	public ImageIcon point;
-	public int play_x, play_y, user=2;
-	public int pos_x, pos_y;//?
+	public static int user=2;
 	/*user!
 	 * 1:p1
 	 * 2:p2
@@ -28,21 +29,5 @@ public class PlayerSetting extends Panel {
 			user=2;
 		else if(user==2)	
 			user=1;
-	}
-	
-	
-	public void xysetting() {//보류 
-		if(pos_x < 10)	
-			pos_x = 0;
-		else if(pos_x > 90)
-			pos_x = 8;
-		else
-			pos_x = (int)pos_x/10;
-		if(pos_y < 10)
-			pos_y = 0;
-		else if(pos_y > 90)
-			pos_y = 8;
-		else
-			pos_y = (int)pos_y/10;
 	}
 }

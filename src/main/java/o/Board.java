@@ -125,23 +125,25 @@ public class Board extends JFrame{
 			grs.setShadow_my();//reset + set stones
 			
 			if(p1_score + p2_score == 64) {
+				//setIcon --> setBounds 다시 설정해 주어야 한다!! 
 				if(p1_score>p2_score) {
 					System.out.println("******게임 끝******");
 					ScoreBoard.p1.setIcon(PlayerSetting.p1_win);
 					ScoreBoard.p1.setBounds(50, 0, 100, 100);
 					System.out.println("노랑이 승!");
-					//setIcon --> setBounds 다시 설정해 주어야 한다!! 
 				}
 				else if(p1_score<p2_score) {
 					System.out.println("******게임 끝******");
-					ScoreBoard.p1.setIcon(PlayerSetting.p2_win);
-					ScoreBoard.p1.setBounds(200, 0, 100, 100);
+					ScoreBoard.p2.setIcon(PlayerSetting.p2_win);
+					ScoreBoard.p2.setBounds(200, 0, 100, 100);
 					System.out.println("검정이 승!");
 					}
 				else if(p1_score==p2_score) {
 					System.out.println("******게임 끝******");
 					ScoreBoard.p1.setIcon(PlayerSetting.p1_win);
-					ScoreBoard.p1.setIcon(PlayerSetting.p2_win);
+					ScoreBoard.p2.setIcon(PlayerSetting.p2_win);
+					ScoreBoard.p1.setBounds(50, 0, 100, 100);
+					ScoreBoard.p2.setBounds(200, 0, 100, 100);
 					System.out.println("무승부!");
 				}
 			}

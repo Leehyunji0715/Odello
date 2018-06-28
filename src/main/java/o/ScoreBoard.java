@@ -13,8 +13,8 @@ public class ScoreBoard extends JFrame{
 		int p2_10digits_score,p2_1digit_score;
 		ImageIcon score = new ImageIcon();//점수 그림 + 플레이어 그림 
 		
-		JLabel p1 = new JLabel();
-		JLabel p2 = new JLabel();
+		static JLabel p1 = new JLabel();
+		static JLabel p2 = new JLabel();
 
 		JLabel sc = new JLabel();
 		JLabel p1_10digits = new JLabel();			
@@ -34,7 +34,7 @@ public class ScoreBoard extends JFrame{
 			scoreShowBoard.setSize(300, 200);
 			scoreShowBoard.setResizable(false);
 			scoreShowBoard.setDefaultCloseOperation(EXIT_ON_CLOSE);
-			//scoreShowBoard.add(PlayerSetting.sbak);
+
 			scoreShowBoard.add(p1);
 			scoreShowBoard.add(p2);
 		}

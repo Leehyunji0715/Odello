@@ -81,6 +81,7 @@ public class Board extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+			
 			boolean state = false;
 			for(int i=0;i<8;i++) {
 				for(int j=0;j<8;j++) {
@@ -92,6 +93,7 @@ public class Board extends JFrame{
 			}
 			if(state==false) {
 				ps.changeUser();
+				grs.setShadow_my();
 				return;
 			}
 			
@@ -105,7 +107,6 @@ public class Board extends JFrame{
 				return;
 			}
 			else {
-				
 				grs.checkChangeStone();
 				value = ps.user;
 				switch(value) {
@@ -120,18 +121,27 @@ public class Board extends JFrame{
 			countEach(e);
 			/*다음 유저의 차례로 넘긴다.*/
 			ps.changeUser();
+			
 			grs.setShadow_my();//reset + set stones
+			
 			if(p1_score + p2_score == 64) {
 				if(p1_score>p2_score) {
 					System.out.println("******게임 끝******");
+					ScoreBoard.p1.setIcon(PlayerSetting.p1_win);
+					ScoreBoard.p1.setBounds(50, 0, 100, 100);
 					System.out.println("노랑이 승!");
+					//setIcon --> setBounds 다시 설정해 주어야 한다!! 
 				}
 				else if(p1_score<p2_score) {
 					System.out.println("******게임 끝******");
+					ScoreBoard.p1.setIcon(PlayerSetting.p2_win);
+					ScoreBoard.p1.setBounds(200, 0, 100, 100);
 					System.out.println("검정이 승!");
 					}
 				else if(p1_score==p2_score) {
 					System.out.println("******게임 끝******");
+					ScoreBoard.p1.setIcon(PlayerSetting.p1_win);
+					ScoreBoard.p1.setIcon(PlayerSetting.p2_win);
 					System.out.println("무승부!");
 				}
 			}
@@ -416,6 +426,7 @@ public class Board extends JFrame{
 										for(int jx =i+1; jx<=7;jx++) {//현 위치서 반대 방향으로 빈공간 찾기 
 											if(jx==8)	break;
 											if(buttons[jx][j].value == 3)	break;
+											if(buttons[jx][j].value == 2)	break;
 											if(buttons[jx][j].value==0) {
 												buttons[jx][j].setIcon(ps.point);
 												buttons[jx][j].value = 3;
@@ -433,6 +444,7 @@ public class Board extends JFrame{
 										for(int jx=i+1,jy=j+1;jx<=7&&jy<=7;jx++,jy++) {//반대 방향 빈공간 찾기 
 											if(jx==8 || jy==8)	break;
 											if(buttons[jx][jy].value==3)	break;
+											if(buttons[jx][jy].value == 2)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
@@ -450,6 +462,7 @@ public class Board extends JFrame{
 										for(int jx=i+1,jy=j-1;jx<=7&&jy>=0;jx++,jy--) {
 											if(jx==8 || jy ==-1)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 2)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value=3;
@@ -466,7 +479,8 @@ public class Board extends JFrame{
 									if(buttons[i][j-1].value == 2) {
 										for(int jy = j+1;jy<=7;jy++) {
 											if(jy==8)break;
-											if(buttons[j][jy].value == 3)	break;
+											if(buttons[i][jy].value == 3)	break;
+											if(buttons[i][jy].value == 2)	break;
 											if(buttons[i][jy].value==0) {
 												buttons[i][jy].setIcon(ps.point);
 												buttons[i][jy].value = 3;
@@ -484,6 +498,7 @@ public class Board extends JFrame{
 										for(int jy = j-1;jy>=0;jy--) {
 											if(jy==-1)	break;
 											if(buttons[i][jy].value == 3)	break;
+											if(buttons[i][jy].value == 2)	break;
 											if(buttons[i][jy].value==0) {
 												buttons[i][jy].setIcon(ps.point);
 												buttons[i][jy].value = 3;
@@ -501,6 +516,7 @@ public class Board extends JFrame{
 										for(int jx = i-1,jy = j+1;jx>=0&&jy<=7;jx--,jy++) {
 											if(jx==-1 || jy==8)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 2)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
@@ -518,6 +534,7 @@ public class Board extends JFrame{
 										for(int jx = i-1;jx>=0;jx--) {
 											if(jx == -1)		break;
 											if(buttons[jx][j].value == 3)	break;
+											if(buttons[jx][j].value == 2)	break;
 											if(buttons[jx][j].value==0) {
 												buttons[jx][j].setIcon(ps.point);
 												buttons[jx][j].value = 3;
@@ -535,6 +552,7 @@ public class Board extends JFrame{
 										for(int jx = i-1,jy = j-1;jy>=0&&jx>=0;jx--,jy--) {
 											if(jx==-1 || jy == -1)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 2)	break;
 											if(buttons[jx][jy].value == 0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
@@ -556,6 +574,7 @@ public class Board extends JFrame{
 										for(int jx =i+1; jx<=7;jx++) {//현 위치서 반대 방향으로 빈공간 찾기 
 											if(jx==8)	break;
 											if(buttons[jx][j].value == 3)	break;
+											if(buttons[jx][j].value == 1)	break;
 											if(buttons[jx][j].value==0) {
 												buttons[jx][j].setIcon(ps.point);
 												buttons[jx][j].value = 3;
@@ -573,6 +592,7 @@ public class Board extends JFrame{
 										for(int jx=i+1,jy=j+1;jx<=7&&jy<=7;jx++,jy++) {//반대 방향 빈공간 찾기 
 											if(jx==8 || jy==8)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 1)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
@@ -590,6 +610,7 @@ public class Board extends JFrame{
 										for(int jx=i+1,jy=j-1;jx<=7&&jy>=0;jx++,jy--) {
 											if(jx==8 || jy ==-1)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 1)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value=3;
@@ -607,6 +628,7 @@ public class Board extends JFrame{
 										for(int jy = j+1;jy<=7;jy++) {
 											if(jy==8)	break;
 											if(buttons[i][jy].value == 3)	break;
+											if(buttons[i][jy].value == 1)	break;
 											if(buttons[i][jy].value==0) {
 												buttons[i][jy].setIcon(ps.point);
 												buttons[i][jy].value = 3;
@@ -624,6 +646,7 @@ public class Board extends JFrame{
 										for(int jy = j-1;jy>=0;jy--) {
 											if(jy==-1)	break;
 											if(buttons[i][jy].value == 3)	break;
+											if(buttons[i][jy].value == 1)	break;
 											if(buttons[i][jy].value==0) {
 												buttons[i][jy].setIcon(ps.point);
 												buttons[i][jy].value = 3;
@@ -641,6 +664,7 @@ public class Board extends JFrame{
 										for(int jx = i-1,jy = j+1;jx>=0&&jy<=7;jx--,jy++) {
 											if(jx==-1 || jy==8)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 1)	break;
 											if(buttons[jx][jy].value==0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
@@ -658,6 +682,7 @@ public class Board extends JFrame{
 										for(int jx = i-1;jx>=0;jx--) {
 											if(jx == -1)		break;
 											if(buttons[jx][j].value == 3)	break;
+											if(buttons[jx][j].value == 1)	break;
 											if(buttons[jx][j].value==0) {
 												buttons[jx][j].setIcon(ps.point);
 												buttons[jx][j].value = 3;
@@ -675,6 +700,7 @@ public class Board extends JFrame{
 										for(int jx = i-1,jy = j-1;jy>=0&&jx>=0;jx--,jy--) {
 											if(jx==-1 || jy == -1)	break;
 											if(buttons[jx][jy].value == 3)	break;
+											if(buttons[jx][jy].value == 1)	break;
 											if(buttons[jx][jy].value == 0) {
 												buttons[jx][jy].setIcon(ps.point);
 												buttons[jx][jy].value = 3;
